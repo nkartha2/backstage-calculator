@@ -1,5 +1,6 @@
 import React from 'react';
 import fetch from './__mock__/fetch';
+import './calculator.scss';
 
 
 class CalculatorForm extends React.Component {
@@ -12,18 +13,19 @@ class CalculatorForm extends React.Component {
   }
 
   checkValidNumber (inputNumber) {
+    const convertedInputNumber = parseInt(inputNumber);
     // the number should be natural, above 0, and less than or equal to 100
-    if(inputNumber < 0 || inputNumber > 100 || !Number.isInteger(inputNumber)) {
-      this.setState({errorMessage: 'Not a valid number for calculating difference.'});
-      return false
+    if(convertedInputNumber  < 0 || convertedInputNumber > 100 || !Number.isInteger(convertedInputNumber)) {
+      this.setState({errorMessage: 'Please enter a number above 0 and less than 101.'});
+      return false;
     }
-    return true
+    this.setState({numberToSubmit: convertedInputNumber});
+    return true;
   }
 
   onNumberChange = (inputNumber) => {
     this.setState({errorMessage: ''});
-    const convertedInputNumber = parseInt(inputNumber);
-    this.setState({numberToSubmit: convertedInputNumber});
+    this.setState({numberToSubmit: inputNumber});
   }
 
   onSubmitNumber = (e) => {
@@ -57,7 +59,7 @@ class CalculatorForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="calculator">
         <form onSubmit={(e) => {this.onSubmitNumber(e)}}>
           <label>
             Enter Number
