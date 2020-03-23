@@ -1,4 +1,6 @@
 import React from 'react';
+import fetch from './__mock__/fetch';
+
 
 class CalculatorForm extends React.Component {
   constructor() {
@@ -14,6 +16,7 @@ class CalculatorForm extends React.Component {
     if(inputNumber < 0 || inputNumber > 100 || !Number.isInteger(inputNumber)) {
       this.setState({errorMessage: 'Not a valid number for calculating difference.'})
     }
+    return
   }
 
   onNumberChange = (inputNumber) => {
@@ -27,9 +30,10 @@ class CalculatorForm extends React.Component {
     this.checkValidNumber(this.state.numberToSubmit);
 
     try {
-
+      fetch();
     } catch(e) {
-
+      console.error(e);
+      this.setState({errorMessage: e.errorMessage})
     } finally {
       if(!this.state.errorMessage) {
         this.setState({numberToSubmit: 0})
