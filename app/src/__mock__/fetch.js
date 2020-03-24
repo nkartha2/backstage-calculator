@@ -1,10 +1,15 @@
-import DifferenceCalculator from '../DifferenceCalculator';
+import calculateDifference from '../calculate_difference';
 
 const submittedNumbers = {};
 
 export default function(inputNumber) {
   if(!submittedNumbers.hasOwnProperty(inputNumber)) {
-    new DifferenceCalculator(inputNumber, submittedNumbers);
+    submittedNumbers[inputNumber] = {
+      occurrences: 0,
+      difference: calculateDifference(inputNumber),
+      dateTime: new Date().toLocaleString(),
+      pastTime: ''
+    }
   }
   submittedNumbers[inputNumber].pastTime = submittedNumbers[inputNumber].dateTime;
   submittedNumbers[inputNumber].dateTime = new Date().toLocaleString()
