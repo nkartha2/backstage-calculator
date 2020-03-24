@@ -61,7 +61,7 @@ class CalculatorForm extends React.Component {
       <div className="calculator">
         <form onSubmit={(e) => {this.onSubmitNumber(e)}}>
           <label>
-            Enter Number
+            Enter A Number Between 0 and 101
             <input
               value={this.state.numberToSubmit ? this.state.numberToSubmit : ""}
               onChange={(e) => {this.onNumberChange(e.currentTarget.value)}}
@@ -69,15 +69,17 @@ class CalculatorForm extends React.Component {
             />
           </label>
           <input value="Submit" type="submit"/>
-          {this.state.errorMessage && <p>{this.state.errorMessage}</p>}
+          {this.state.errorMessage && <p className="error-message">{this.state.errorMessage}</p>}
         </form>
-        <ul>
-          <li>Submitted Value: {this.state.submittedValue}</li>
-          <li>Calculated Difference: {this.state.calculatedDifference}</li>
-          <li>Number of Times Requested: {this.state.occurences}</li>
-          <li>Date of Time Requested:{this.state.dateTime}</li>
-          {this.state.pastDateTime && <li>Last Requested: {this.state.pastDateTime}</li>}
-        </ul>
+        {this.state.submittedValue &&
+          <ul>
+            <li><h4>Submitted Value: </h4> {this.state.submittedValue}</li>
+            <li><h4>Calculated Difference: </h4>{this.state.calculatedDifference}</li>
+            <li><h4>Number of Times Requested: </h4>{this.state.occurences}</li>
+            <li><h4>Date of Time Requested: </h4>{this.state.dateTime}</li>
+            {this.state.pastDateTime && <li><h4>Last Requested: </h4>{this.state.pastDateTime}</li>}
+          </ul>
+        }
       </div>
     );
   }
