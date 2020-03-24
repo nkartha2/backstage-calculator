@@ -13,19 +13,18 @@ class CalculatorForm extends React.Component {
   }
 
   checkValidNumber (inputNumber) {
-    const convertedInputNumber = parseInt(inputNumber);
     // the number should be natural, above 0, and less than or equal to 100
-    if(convertedInputNumber  < 0 || convertedInputNumber > 100 || !Number.isInteger(convertedInputNumber)) {
+    if(inputNumber  < 0 || inputNumber > 100 || !Number.isInteger(inputNumber)) {
       this.setState({errorMessage: 'Please enter a number above 0 and less than 101.'});
       return false;
     }
-    this.setState({numberToSubmit: convertedInputNumber});
     return true;
   }
 
   onNumberChange = (inputNumber) => {
+    const convertedInputNumber = parseInt(inputNumber);
+    this.setState({numberToSubmit: convertedInputNumber});
     this.setState({errorMessage: ''});
-    this.setState({numberToSubmit: inputNumber});
   }
 
   onSubmitNumber = (e) => {
