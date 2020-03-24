@@ -5,9 +5,9 @@ This app requires the user to input a number between 0 and 101 in order to calcu
 
 
 # TO RUN
-cd app
-npm install
-npm start
+1. cd app
+2. npm install
+3. npm start
 
 # TO RUN TESTS
 npm test
